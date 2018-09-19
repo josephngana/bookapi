@@ -42,7 +42,6 @@ javaOptions in Universal ++= Seq(
   "-J-Xmn2g"
 )
 
-
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
 libraryDependencies += "org.scalactic" % "scalactic_2.12" % "3.0.5"
@@ -51,17 +50,12 @@ libraryDependencies += "javax.mail" % "javax.mail-api" % "1.6.1"
 libraryDependencies += "org.typelevel" % "cats-core_2.12" % catsVersion
 libraryDependencies += "org.typelevel" %% "cats-effect" % "0.10.1"
 
-
-
-
 libraryDependencies += "com.github.romix.akka" % "akka-kryo-serialization_2.12" % "0.5.2"
 libraryDependencies += "com.esotericsoftware" % "kryo" % "4.0.1"
 libraryDependencies += "com.github.t3hnar" % "scala-bcrypt_2.12" % "3.1"
 libraryDependencies += "com.squareup.okhttp3" % "okhttp" % "3.10.0"
 libraryDependencies += "com.squareup.moshi" % "moshi" % "1.6.0"
 libraryDependencies += "com.squareup.moshi" % "moshi-adapters" % "1.6.0"
-
-
 
 libraryDependencies += "org.apache.commons" % "commons-lang3" % "3.7"
 libraryDependencies += "org.apache.commons" % "commons-email" % "1.5"
@@ -74,9 +68,6 @@ libraryDependencies += "com.rometools" % "rome" % "1.10.0"
 libraryDependencies += "org.jsoup" % "jsoup" % "1.11.3"
 libraryDependencies += "com.softwaremill.sttp" %% "core" % "1.2.1"
 
-
-
-
 libraryDependencies += "com.typesafe.play" % "play-iteratees_2.12" % "2.6.1"
 libraryDependencies += "com.typesafe.play" % "play-iteratees-reactive-streams_2.12" % "2.6.1"
 
@@ -85,13 +76,10 @@ libraryDependencies += "com.outworkers" % "phantom-connectors_2.12" % PhantomVer
 libraryDependencies += "com.outworkers" % "phantom-streams_2.12" % PhantomVersion
 libraryDependencies += "com.outworkers" % "phantom-jdk8_2.12" % PhantomVersion
 
-
 libraryDependencies += "com.typesafe.play" % "play-json_2.12" % "2.6.9"
 libraryDependencies += "com.typesafe.play" % "play-akka-http-server_2.12" % PlayFrameWorkVersion
 libraryDependencies += "com.typesafe.play" % "play-guice_2.12" % PlayFrameWorkVersion
 libraryDependencies += "com.typesafe.play" % "play-ws_2.12" % PlayFrameWorkVersion
-
-
 
 resolvers ++= Seq(
   "Typesafe repository snapshots" at "http://repo.typesafe.com/typesafe/snapshots/",
@@ -111,4 +99,3 @@ resolvers ++= Seq(
   Resolver.sonatypeRepo("snapshots"),
   Resolver.sonatypeRepo("public")
 )
-
