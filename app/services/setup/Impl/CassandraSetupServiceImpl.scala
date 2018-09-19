@@ -14,16 +14,6 @@ class CassandraSetupServiceImpl extends CassandraSetupService {
   override def createTables: Future[Boolean] = {
     RoleService.apply.createTable
     MailConfigService.apply.createTable
-    SmtpConfigService.apply.createTable
-    ApiKeysService.apply.createTable
-    SiteAccessKeysApiService.apply.createTable
-    UserTokenService.apply.createTable
-    SiteService.apply.createTable
-    SystemLogEventsService.apply.createTable
-    UserRoleService.apply.createTable
-    UserService.apply.createTable
-    UserStatusService.apply.createTable
-    UserPasswordService.apply.createTable
-    MailApiService.apply.createTable
+
   }
 }
