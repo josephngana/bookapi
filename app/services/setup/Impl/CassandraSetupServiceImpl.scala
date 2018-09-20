@@ -1,12 +1,11 @@
 package services.setup.Impl
 
-import services.mail.{MailApiService, MailConfigService, SmtpConfigService}
+import services.mail.MailApiService
 import services.roles.RoleService
-import services.security.{ApiKeysService, SiteAccessKeysApiService, UserTokenService}
+import services.security.{ApiKeysService, UserTokenService}
 import services.setup.CassandraSetupService
-import services.sites.SiteService
 import services.systemlogs.SystemLogEventsService
-import services.users.{UserRoleService, UserService, UserStatusService, UserPasswordService}
+import services.users.{UserRoleService, UserService}
 
 import scala.concurrent.Future
 
@@ -18,7 +17,6 @@ class CassandraSetupServiceImpl extends CassandraSetupService {
     SystemLogEventsService.apply.createTable
     UserRoleService.apply.createTable
     UserService.apply.createTable
-    UserPasswordService.apply.createTable
     MailApiService.apply.createTable
   }
 }
