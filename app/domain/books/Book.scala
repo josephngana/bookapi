@@ -7,9 +7,10 @@ import play.api.libs.json.Json
 case class Book(
                  id: String,
                  title: String,
-                 override val description: String = "",
-                 override val story: String = "",
                  isbn: String,
+                 eisbn: String,
+                 author: String,
+                 publisher: String,
                  datePublished: LocalTime,
                ) extends BookBase {}
 
