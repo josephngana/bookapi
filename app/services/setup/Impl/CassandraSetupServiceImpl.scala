@@ -13,7 +13,12 @@ import scala.concurrent.Future
 class CassandraSetupServiceImpl extends CassandraSetupService {
   override def createTables: Future[Boolean] = {
     RoleService.apply.createTable
-    MailConfigService.apply.createTable
-
+    ApiKeysService.apply.createTable
+    UserTokenService.apply.createTable
+    SystemLogEventsService.apply.createTable
+    UserRoleService.apply.createTable
+    UserService.apply.createTable
+    UserPasswordService.apply.createTable
+    MailApiService.apply.createTable
   }
 }
