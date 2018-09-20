@@ -39,9 +39,7 @@ class UserTokenRepositoryImpl extends UserTokenRepository{
   }
 
 
-  override def getUserTokens(userId: String): Future[Seq[UserToken]] = {
-    UserTokenDatabase.userTokenTable.getUserTokens(userId)
-  }
+  override def getUserTokens(userId: String): Future[Seq[UserToken]] = ???
 }
 
 class UserTokenDatabase(override val connector: KeySpaceDef) extends Database[UserTokenDatabase](connector) {

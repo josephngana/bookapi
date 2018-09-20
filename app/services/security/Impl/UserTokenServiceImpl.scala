@@ -27,18 +27,7 @@ class UserTokenServiceImpl extends UserTokenService{
     UserTokenRepository.apply.createTable
   }
 
-  override def getSiteUserTokens(siteId: String): Future[Seq[UserToken]] = {
-    UserTokenRepository.apply.getSiteUserTokens(siteId)
-  }
 
-  override def getUserTokens(userId: String): Future[Seq[UserToken]] = {
-    UserTokenRepository.apply.getUserTokens(userId)
-  }
-
-
-  override def revokeUserToken(token: String): Future[Boolean] = {
-    UserTokenRepository.apply.deleteEntity()
-  }
 
 
 }

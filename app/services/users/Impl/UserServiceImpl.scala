@@ -27,15 +27,4 @@ class UserServiceImpl extends UserService{
     UserRepository.apply.createTable
   }
 
-  override def getSiteUsers(siteId: String): Future[Seq[User]] = {
-    UserRepository.apply.getSiteUsers(siteId)
-  }
-
-  override def getUserByEmail(email: String): Future[Seq[User]] = {
-    UserRepository.apply.getUserByEmail(email)
-  }
-
-  override def isUserAvailable(entity: User): Future[Boolean] = {
-    UserRepository.apply.isUserAvailable(entity)
-  }
 }

@@ -1,11 +1,11 @@
 package controllers.mail
 
-import domain.mail.{EmailMessage, MailApi, SmtpConfig}
+import domain.mail.{EmailMessage, MailApi}
 import domain.security.TokenFailExcerption
 import javax.inject.Inject
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc._
-import services.mail.{MailApiService, MailService, SmtpConfigService}
+import services.mail.{MailApiService, MailService}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
