@@ -13,7 +13,7 @@ case class Book(
                  author: String,
                  publisher: String,
                  datePublished: LocalDateTime,
-                 chapters: Seq[Chapter]
+                 chapterIds: List[String]
                ) extends BookBase {}
 
 object Book {

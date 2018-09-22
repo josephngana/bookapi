@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 import com.outworkers.phantom.dsl._
 import com.outworkers.phantom.streams._
 import com.outworkers.phantom.jdk8._
-import domain.books.Book
+import domain.books.{Book}
 
 import scala.concurrent.Future
 
@@ -31,6 +31,8 @@ abstract class BookTable extends Table[BookTable , Book] {
 
   object datePublished extends Col[LocalDateTime]
 
+  object chapterIds extends ListColumn[String]
+
   object dateCreated extends Col[LocalDateTime]
 
 }
@@ -55,6 +57,7 @@ abstract class BookTableImpl extends BookTable with RootConnector {
       .value(_.description, entity.description)
       .value(_.story, entity.story)
       .value(_.datePublished, entity.datePublished)
+      .value(_.chapterIds, entity.chapterIds)
       .value(_.dateCreated, entity.dateCreated)
       .future()
   }
@@ -113,6 +116,8 @@ abstract class BookByIdTable extends Table[BookByIdTable, Book] {
 
   object datePublished extends Col[LocalDateTime]
 
+  object chapterIds extends ListColumn[String]
+
   object dateCreated extends Col[LocalDateTime]
 }
 
@@ -131,6 +136,7 @@ abstract class BookByIdTableImpl extends BookByIdTable with RootConnector {
       .value(_.description, entity.description)
       .value(_.story, entity.story)
       .value(_.datePublished, entity.datePublished)
+      .value(_.chapterIds, entity.chapterIds)
       .value(_.dateCreated, entity.dateCreated)
       .future()
   }
