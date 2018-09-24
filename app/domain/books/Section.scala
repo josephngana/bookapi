@@ -2,12 +2,12 @@ package domain.books
 
 import play.api.libs.json.Json
 
-case class Chapter(
+case class Section(
                     id: String,
                     title: String,
-                    sectionIds: List[String]
+                    subsectionIds: List[String]
                   ) extends BookBase {}
 
-object Chapter {
-  implicit val chapterFormat = Json.format[Chapter]
+object Section {
+  implicit val sectionFormat = Json.format[Section]
 }

@@ -9,7 +9,7 @@ import domain.books.{Book}
 
 import scala.concurrent.Future
 
-abstract class BookTable extends Table[BookTable , Book] {
+abstract class BookTable extends Table[BookTable, Book] {
 
   object siteId extends StringColumn with PartitionKey
 
