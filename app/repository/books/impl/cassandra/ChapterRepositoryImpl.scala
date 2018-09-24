@@ -1,6 +1,6 @@
 package repository.books.impl.cassandra
 
-import com.outworkers.phantom.connectors.{KeySpace, KeySpaceDef}
+import com.outworkers.phantom.connectors.{KeySpace}
 import com.outworkers.phantom.database.Database
 import com.outworkers.phantom.dsl._
 import configuration.connections.DataConnection

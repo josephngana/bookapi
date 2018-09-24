@@ -7,11 +7,11 @@ import com.outworkers.phantom.connectors.RootConnector
 import com.outworkers.phantom.dsl._
 import com.outworkers.phantom.streams._
 import com.outworkers.phantom.jdk8._
-import domain.books.Chapter
+import domain.books.Section
 
 import scala.concurrent.Future
 
-abstract class ChapterTable extends Table[ChapterTable, Chapter] {
+abstract class SectionTable extends Table[SectionTable, Section] {
 
   object id extends StringColumn with PartitionKey
 
@@ -21,23 +21,23 @@ abstract class ChapterTable extends Table[ChapterTable, Chapter] {
 
   object story extends OptionalStringColumn
 
-  object sectionIds extends ListColumn[String]
+  object subsectionIds extends ListColumn[String]
 
   object dateCreated extends Col[LocalDateTime]
 
 }
 
-abstract class ChapterTableImpl extends ChapterTable with RootConnector {
+abstract class SectionTableImpl extends SectionTable with RootConnector {
 
-  override lazy val tableName = "chapters"
+  override lazy val tableName = "sections"
 
-  def saveEntity(entity: Chapter): Future[ResultSet] = {
+  def saveEntity(entity: Section): Future[ResultSet] = {
     insert
       .value(_.id, entity.id)
       .value(_.title, entity.title)
       .value(_.description, entity.description)
       .value(_.story, entity.story)
-      .value(_.sectionIds, entity.sectionIds)
+      .value(_.subsectionIds, entity.subsectionIds)
       .value(_.dateCreated, entity.dateCreated)
       .future()
   }
@@ -48,14 +48,13 @@ abstract class ChapterTableImpl extends ChapterTable with RootConnector {
       .future()
   }
 
-  def getEntities: Future[Seq[Chapter]] = {
+  def getEntities: Future[Seq[Section]] = {
     select.fetchEnumerator() run Iteratee.collect()
   }
 
-  def getEntity(id: String): Future[Option[Chapter]] = {
+  def getEntity(id: String): Future[Option[Section]] = {
     select
       .where(_.id.eqs(id))
       .one()
   }
-
 }

@@ -1,6 +1,6 @@
 package services.setup.Impl
 
-import services.books.BookService
+import services.books.{BookService, ChapterService, SectionService, SubsectionService}
 import services.mail.MailApiService
 import services.roles.RoleService
 import services.security.{ApiKeysService, UserTokenService}
@@ -20,5 +20,8 @@ class CassandraSetupServiceImpl extends CassandraSetupService {
     UserService.apply.createTable
     MailApiService.apply.createTable
     BookService.apply.createTable
+    ChapterService.apply.createTable
+    SectionService.apply.createTable
+    SubsectionService.apply.createTable
   }
 }
