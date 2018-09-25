@@ -7,6 +7,7 @@ import play.api.libs.json.Json
 case class Multimedia(
                      multimediaId: String,
                      multimediaType: String,
+                     multimediaName: String,
                      multimediaLink: String,
                      dateCreated: LocalDateTime = LocalDateTime.now
                      )

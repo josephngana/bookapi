@@ -15,6 +15,8 @@ abstract class MultimediaTable extends Table[MultimediaTable, Multimedia] {
 
   object multimediaType extends StringColumn
 
+  object multimediaName extends StringColumn
+
   object multimediaLink extends StringColumn
 
   object dateCreated extends Col[LocalDateTime]
@@ -29,6 +31,7 @@ abstract class MultimediaTableImpl extends MultimediaTable with RootConnector {
     insert
       .value(_.multimediaId, entity.multimediaId)
       .value(_.multimediaType, entity.multimediaType)
+      .value(_.multimediaName, entity.multimediaName)
       .value(_.multimediaLink, entity.multimediaLink)
       .value(_.dateCreated, entity.dateCreated)
       .future()
