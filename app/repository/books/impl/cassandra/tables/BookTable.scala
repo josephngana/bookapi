@@ -33,6 +33,8 @@ abstract class BookTable extends Table[BookTable, Book] {
 
   object chapterIds extends ListColumn[String]
 
+  object multimedias extends ListColumn[String]
+
   object dateCreated extends Col[LocalDateTime]
 
 }
@@ -58,6 +60,7 @@ abstract class BookTableImpl extends BookTable with RootConnector {
       .value(_.story, entity.story)
       .value(_.datePublished, entity.datePublished)
       .value(_.chapterIds, entity.chapterIds)
+      .value(_.multimedias, entity.multimedias)
       .value(_.dateCreated, entity.dateCreated)
       .future()
   }
@@ -118,6 +121,8 @@ abstract class BookByIdTable extends Table[BookByIdTable, Book] {
 
   object chapterIds extends ListColumn[String]
 
+  object multimedias extends ListColumn[String]
+
   object dateCreated extends Col[LocalDateTime]
 }
 
@@ -137,6 +142,7 @@ abstract class BookByIdTableImpl extends BookByIdTable with RootConnector {
       .value(_.story, entity.story)
       .value(_.datePublished, entity.datePublished)
       .value(_.chapterIds, entity.chapterIds)
+      .value(_.multimedias, entity.multimedias)
       .value(_.dateCreated, entity.dateCreated)
       .future()
   }

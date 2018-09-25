@@ -23,6 +23,8 @@ abstract class SectionTable extends Table[SectionTable, Section] {
 
   object subsectionIds extends ListColumn[String]
 
+  object multimedias extends ListColumn[String]
+
   object dateCreated extends Col[LocalDateTime]
 
 }
@@ -38,6 +40,7 @@ abstract class SectionTableImpl extends SectionTable with RootConnector {
       .value(_.description, entity.description)
       .value(_.story, entity.story)
       .value(_.subsectionIds, entity.subsectionIds)
+      .value(_.multimedias, entity.multimedias)
       .value(_.dateCreated, entity.dateCreated)
       .future()
   }

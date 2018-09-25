@@ -23,6 +23,8 @@ abstract class ChapterTable extends Table[ChapterTable, Chapter] {
 
   object sectionIds extends ListColumn[String]
 
+  object multimedias extends ListColumn[String]
+
   object dateCreated extends Col[LocalDateTime]
 
 }
@@ -38,6 +40,7 @@ abstract class ChapterTableImpl extends ChapterTable with RootConnector {
       .value(_.description, entity.description)
       .value(_.story, entity.story)
       .value(_.sectionIds, entity.sectionIds)
+      .value(_.multimedias, entity.multimedias)
       .value(_.dateCreated, entity.dateCreated)
       .future()
   }

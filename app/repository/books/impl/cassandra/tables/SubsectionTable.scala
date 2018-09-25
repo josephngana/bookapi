@@ -21,6 +21,8 @@ abstract class SubsectionTable extends Table[SubsectionTable, Subsection] {
 
   object story extends OptionalStringColumn
 
+  object multimedias extends ListColumn[String]
+
   object dateCreated extends Col[LocalDateTime]
 
 }
@@ -34,6 +36,7 @@ abstract class SubsectionTableImpl extends SubsectionTable with RootConnector {
       .value(_.title, entity.title)
       .value(_.description, entity.description)
       .value(_.story, entity.story)
+      .value(_.multimedias, entity.multimedias)
       .value(_.dateCreated, entity.dateCreated)
       .future()
   }

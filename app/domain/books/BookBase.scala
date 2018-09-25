@@ -7,5 +7,6 @@ abstract class BookBase {
   def title: String
   def description: Option[String] = None
   def story: Option[String] = None
+  def multimedias: List[String] = List[String]()
   def dateCreated: LocalDateTime = LocalDateTime.now
 }
