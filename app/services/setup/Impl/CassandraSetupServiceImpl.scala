@@ -5,6 +5,7 @@ import services.mail.MailApiService
 import services.roles.RoleService
 import services.security.{ApiKeysService, UserTokenService}
 import services.setup.CassandraSetupService
+import services.sites.SiteService
 import services.systemlogs.SystemLogEventsService
 import services.users.{UserRoleService, UserService}
 
@@ -24,5 +25,6 @@ class CassandraSetupServiceImpl extends CassandraSetupService {
     SectionService.apply.createTable
     SubsectionService.apply.createTable
     MultimediaService.apply.createTable
+    SiteService.apply.createTable
   }
 }
