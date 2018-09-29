@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018/09/29 3:11 PM.
+ * Author: caniksea
+ * Project: bookapi
+ * Last Modified: 2018/09/25 8:25 AM
+ */
+
 package repository.books.impl.cassandra.tables
 
 import java.time.LocalDateTime
@@ -33,6 +40,11 @@ abstract class SectionTableImpl extends SectionTable with RootConnector {
 
   override lazy val tableName = "sections"
 
+  /**
+    * Save a section
+    * @param entity
+    * @return
+    */
   def saveEntity(entity: Section): Future[ResultSet] = {
     insert
       .value(_.id, entity.id)
@@ -45,16 +57,30 @@ abstract class SectionTableImpl extends SectionTable with RootConnector {
       .future()
   }
 
+  /**
+    * Delete a section
+    * @param id
+    * @return
+    */
   def deleteEntity(id: String): Future[ResultSet] = {
     delete
       .where(_.id eqs id)
       .future()
   }
 
+  /**
+    * Fetch all sections
+    * @return
+    */
   def getEntities: Future[Seq[Section]] = {
     select.fetchEnumerator() run Iteratee.collect()
   }
 
+  /**
+    * Fetch a section
+    * @param id
+    * @return
+    */
   def getEntity(id: String): Future[Option[Section]] = {
     select
       .where(_.id.eqs(id))

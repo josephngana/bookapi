@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018/09/29 3:05 PM.
+ * Author: caniksea
+ * Project: bookapi
+ * Last Modified: 2018/09/25 8:18 AM
+ */
+
 package repository.books.impl.cassandra.tables
 
 import java.time.LocalDateTime
@@ -8,6 +15,7 @@ import com.outworkers.phantom.jdk8._
 import domain.books.{Book}
 
 import scala.concurrent.Future
+
 
 abstract class BookTable extends Table[BookTable, Book] {
 
@@ -76,6 +84,12 @@ abstract class BookTableImpl extends BookTable with RootConnector {
       .fetchEnumerator() run Iteratee.collect()
   }
 
+  /**
+    * Retrieve a book from site
+    * @param siteId
+    * @param id
+    * @return
+    */
   def isBookAvailable(siteId: String, id: String): Future[Seq[Book]] = {
     select
       .where(_.siteId eqs siteId)
@@ -83,10 +97,20 @@ abstract class BookTableImpl extends BookTable with RootConnector {
       .fetchEnumerator() run Iteratee.collect()
   }
 
+  /**
+    * Retrieve all books
+    * @return
+    */
   def getEntities: Future[Seq[Book]] = {
     select.fetchEnumerator() run Iteratee.collect()
   }
 
+  /**
+    * Delete a book from a site
+    * @param siteId
+    * @param id
+    * @return
+    */
   def deleteEntity(siteId: String, id: String): Future[ResultSet] = {
     delete
       .where(_.siteId eqs siteId)
@@ -129,6 +153,11 @@ abstract class BookByIdTable extends Table[BookByIdTable, Book] {
 abstract class BookByIdTableImpl extends BookByIdTable with RootConnector {
   override lazy val tableName = "booksbyids"
 
+  /**
+    * Insert a new book
+    * @param entity
+    * @return
+    */
   def saveEntity(entity: Book): Future[ResultSet] = {
     insert
       .value(_.id, entity.id)
@@ -147,12 +176,22 @@ abstract class BookByIdTableImpl extends BookByIdTable with RootConnector {
       .future()
   }
 
+  /**
+    * Get a book
+    * @param id
+    * @return
+    */
   def getEntity(id: String): Future[Option[Book]] = {
     select
       .where(_.id eqs id)
       .one()
   }
 
+  /**
+    * Delete a book
+    * @param id
+    * @return
+    */
   def deleteEntity(id: String): Future[ResultSet] = {
     delete
       .where(_.id eqs id)

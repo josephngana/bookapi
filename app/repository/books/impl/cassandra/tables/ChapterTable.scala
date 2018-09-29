@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018/09/29 3:07 PM.
+ * Author: caniksea
+ * Project: bookapi
+ * Last Modified: 2018/09/25 8:20 AM
+ */
+
 package repository.books.impl.cassandra.tables
 
 import java.time.LocalDateTime
@@ -33,6 +40,11 @@ abstract class ChapterTableImpl extends ChapterTable with RootConnector {
 
   override lazy val tableName = "chapters"
 
+  /**
+    * Save a chapter
+    * @param entity
+    * @return
+    */
   def saveEntity(entity: Chapter): Future[ResultSet] = {
     insert
       .value(_.id, entity.id)
@@ -45,16 +57,30 @@ abstract class ChapterTableImpl extends ChapterTable with RootConnector {
       .future()
   }
 
+  /**
+    * Delete a chapter
+    * @param id
+    * @return
+    */
   def deleteEntity(id: String): Future[ResultSet] = {
     delete
       .where(_.id eqs id)
       .future()
   }
 
+  /**
+    * Fetch all chapters
+    * @return
+    */
   def getEntities: Future[Seq[Chapter]] = {
     select.fetchEnumerator() run Iteratee.collect()
   }
 
+  /**
+    * Fetch a chapter
+    * @param id
+    * @return
+    */
   def getEntity(id: String): Future[Option[Chapter]] = {
     select
       .where(_.id.eqs(id))

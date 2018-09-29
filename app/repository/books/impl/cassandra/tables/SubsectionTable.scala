@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018/09/29 3:13 PM.
+ * Author: caniksea
+ * Project: bookapi
+ * Last Modified: 2018/09/29 3:13 PM
+ */
+
 package repository.books.impl.cassandra.tables
 
 import java.time.LocalDateTime
@@ -30,6 +37,11 @@ abstract class SubsectionTable extends Table[SubsectionTable, Subsection] {
 abstract class SubsectionTableImpl extends SubsectionTable with RootConnector {
   override lazy val tableName = "subsections"
 
+  /**
+    * Save a subsection
+    * @param entity
+    * @return
+    */
   def saveEntity(entity: Subsection): Future[ResultSet] = {
     insert
       .value(_.id, entity.id)
@@ -41,16 +53,30 @@ abstract class SubsectionTableImpl extends SubsectionTable with RootConnector {
       .future()
   }
 
+  /**
+    * Delete a subsection
+    * @param id
+    * @return
+    */
   def deleteEntity(id: String): Future[ResultSet] = {
     delete
       .where(_.id eqs id)
       .future()
   }
 
+  /**
+    * Get all subsections
+    * @return
+    */
   def getEntities: Future[Seq[Subsection]] = {
     select.fetchEnumerator() run Iteratee.collect()
   }
 
+  /**
+    * Get a subsection
+    * @param id
+    * @return
+    */
   def getEntity(id: String): Future[Option[Subsection]] = {
     select
       .where(_.id.eqs(id))

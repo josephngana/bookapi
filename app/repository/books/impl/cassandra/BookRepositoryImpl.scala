@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018/09/29 3:03 PM.
+ * Author: caniksea
+ * Project: bookapi
+ * Last Modified: 2018/09/21 9:58 AM
+ */
+
 package repository.books.impl.cassandra
 
 import com.outworkers.phantom.connectors.KeySpace
@@ -10,6 +17,9 @@ import repository.books.impl.cassandra.tables.{BookByIdTableImpl, BookTableImpl}
 
 import scala.concurrent.Future
 
+/**
+  *
+  */
 class BookRepositoryImpl extends BookRepository {
   override def saveEntity(entity: Book): Future[Boolean] = {
     BookDatabase.BookTable.saveEntity(entity).map(result => result.isExhausted())
@@ -35,7 +45,10 @@ class BookRepositoryImpl extends BookRepository {
   }
 }
 
-
+/**
+  *
+  * @param connector
+  */
 class BookDatabase(override val connector: KeySpaceDef) extends Database[BookDatabase](connector) {
 
   object BookTable extends BookTableImpl with connector.Connector

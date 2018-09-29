@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018/09/29 3:04 PM.
+ * Author: caniksea
+ * Project: bookapi
+ * Last Modified: 2018/09/24 4:12 PM
+ */
+
 package repository.books.impl.cassandra
 
 import com.outworkers.phantom.connectors.{KeySpace}

@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018/09/29 3:15 PM.
+ * Author: caniksea
+ * Project: bookapi
+ * Last Modified: 2018/09/24 3:09 PM
+ */
+
 package services.books.impl
 
 import domain.books.Chapter

@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018/09/29 3:15 PM.
+ * Author: caniksea
+ * Project: bookapi
+ * Last Modified: 2018/09/25 8:49 AM
+ */
+
 package services.books.impl
 
 import domain.books.Multimedia
