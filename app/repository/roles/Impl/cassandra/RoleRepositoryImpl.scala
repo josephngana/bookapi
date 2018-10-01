@@ -1,11 +1,11 @@
 package repository.roles.Impl.cassandra
 
 import com.outworkers.phantom.connectors.KeySpace
-import com.outworkers.phantom.dsl._
 import com.outworkers.phantom.database.Database
+import com.outworkers.phantom.dsl._
 import configuration.connections.DataConnection
 import domain.roles.Role
-import repository.roles.Impl.cassandra.tables.RoleTableImpl
+import repository.roles.Impl.cassandra.tables.RoleTable
 import repository.roles.RoleRepository
 
 import scala.concurrent.Future
@@ -39,7 +39,7 @@ class RoleRepositoryImpl extends RoleRepository {
 
 class RoleDatabase(override val connector: KeySpaceDef) extends Database[RoleDatabase](connector) {
 
-  object roleTable extends RoleTableImpl with connector.Connector
+  object roleTable extends RoleTable with connector.Connector
 }
 
 object RoleDatabase extends RoleDatabase(DataConnection.connector)
