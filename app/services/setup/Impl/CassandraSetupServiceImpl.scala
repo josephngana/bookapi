@@ -1,9 +1,11 @@
 package services.setup.Impl
 
+import services.books._
 import services.mail.MailApiService
 import services.roles.RoleService
 import services.security.{ApiKeysService, UserTokenService}
 import services.setup.CassandraSetupService
+import services.sites.SiteService
 import services.systemlogs.SystemLogEventsService
 import services.users.{UserRoleService, UserService}
 
@@ -18,5 +20,11 @@ class CassandraSetupServiceImpl extends CassandraSetupService {
     UserRoleService.apply.createTable
     UserService.apply.createTable
     MailApiService.apply.createTable
+    BookService.apply.createTable
+    ChapterService.apply.createTable
+    SectionService.apply.createTable
+    SubsectionService.apply.createTable
+    MultimediaService.apply.createTable
+    SiteService.apply.createTable
   }
 }
