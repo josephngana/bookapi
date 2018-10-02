@@ -6,7 +6,9 @@ import domain.roles.Role
 
 import scala.concurrent.Future
 
-abstract class RoleTable extends Table[RoleTable, Role] {
+abstract class RoleTable extends Table[RoleTable, Role] with RootConnector {
+
+  override lazy val tableName = "roles"
 
   object id extends StringColumn with PartitionKey
 
@@ -14,11 +16,6 @@ abstract class RoleTable extends Table[RoleTable, Role] {
 
   object description extends StringColumn
 
-}
-
-abstract class RoleTableImpl extends RoleTable with RootConnector {
-
-  override lazy val tableName = "roles"
 
   def saveEntity(entity: Role): Future[ResultSet] = {
     insert

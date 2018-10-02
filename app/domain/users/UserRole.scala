@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 
 import play.api.libs.json.Json
 
-case class UserRole(userId: String,
+case class UserRole(userId: String="",
                     date:LocalDateTime=LocalDateTime.now(),
                     roleId: String="")
 
