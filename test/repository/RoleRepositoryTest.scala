@@ -23,7 +23,7 @@ class RoleRepositoryTest extends FunSuite{
   test("roleUpdate"){
     val result = Await.result(repository.apply.getEntity(role.id), 2.minutes)
     val updatedRole = result.get.copy(roleName = "NORMALUSER")
-    val savedResult = Await.result(repository.apply.saveEntity(role), 2.minutes)
+    val savedResult = Await.result(repository.apply.saveEntity(updatedRole), 2.minutes)
     val newRequest = Await.result(repository.apply.getEntity(role.id), 2.minutes)
     assert( newRequest.get.roleName=="NORMALUSER")
   }

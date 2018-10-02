@@ -31,7 +31,7 @@ class siteServicesTest extends FunSuite{
   test("SiteUpdate"){
     val result = Await.result(services.apply.getEntity(site.siteId), 2.minutes)
     val updatedSite = result.get.copy(siteName= "editor")
-    val savedResult = Await.result(services.apply.saveEntity(site), 2.minutes)
+    val savedResult = Await.result(services.apply.saveEntity(updatedSite), 2.minutes)
     val newRequest = Await.result(services.apply.getEntity(site.siteId), 2.minutes)
     assert( newRequest.get.siteName=="editor")
   }

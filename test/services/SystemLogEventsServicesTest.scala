@@ -35,9 +35,9 @@ class SystemLogEventsServicesTest extends FunSuite{
 
   test("SystemLogEventsUpdate"){
     val result = Await.result(services.apply.getEntity(systemLogEvents.id), 2.minutes)
-    val updatedRole = result.get.copy(id= "2")
-    val savedResult = Await.result(services.apply.saveEntity(systemLogEvents), 2.minutes)
-    val newRequest = Await.result(services.apply.getEntity(systemLogEvents.id), 2.minutes)
+    val updateSystemLogEvent = result.get.copy(id= "2")
+    val savedResult = Await.result(services.apply.saveEntity(updateSystemLogEvent), 2.minutes)
+    val newRequest = Await.result(services.apply.getEntity(updateSystemLogEvent.id), 2.minutes)
     assert( newRequest.get.id=="2")
   }
 
