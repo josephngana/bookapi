@@ -7,7 +7,7 @@ import repository.roles.RoleRepository
 import scala.concurrent.Await
 import scala.concurrent.duration._
 class RoleRepositoryTest extends FunSuite{
-  val role = Role("1","ADMIN","This is The Admin Role")
+  val role = Role("2","AD","This is The Admin Role")
   val repository = RoleRepository
 
   test("createRole"){

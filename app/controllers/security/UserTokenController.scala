@@ -15,6 +15,7 @@ class UserTokenController @Inject()
     request =>
       val input = request.body
       val entity = Json.fromJson[UserToken](input).get
+      println(entity)
       val response = for {
         //        auth <- TokenCheckService.apply.getLoginStatus(request)
         results <- UserTokenService.apply.saveEntity(entity)
