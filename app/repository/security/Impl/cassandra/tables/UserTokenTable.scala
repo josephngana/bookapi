@@ -48,22 +48,22 @@ abstract class UserTokenTable extends Table[UserTokenTable, UserToken] with Root
   }
 }
 
-abstract class UserTokenByUsersTable extends Table[UserTokenByUsersTable, UserToken] {
-
-  object siteId extends StringColumn with PrimaryKey
-
-  object userId extends StringColumn with PartitionKey
-
-  object id extends StringColumn with PrimaryKey
-
-  object expiryDate extends Col[LocalDateTime]
-
-  object tokenValue extends StringColumn
-
-  object message extends StringColumn
-
-
-}
+//abstract class UserTokenByUsersTable extends Table[UserTokenByUsersTable, UserToken] {
+//
+//  object siteId extends StringColumn with PrimaryKey
+//
+//  object userId extends StringColumn with PartitionKey
+//
+//  object id extends StringColumn with PrimaryKey
+//
+//  object expiryDate extends Col[LocalDateTime]
+//
+//  object tokenValue extends StringColumn
+//
+//  object message extends StringColumn
+//
+//
+//}
 
 
 abstract class UserTokenByIdTable extends Table[UserTokenByIdTable, UserToken] with RootConnector {
