@@ -23,19 +23,19 @@ class UserTokenServicesTest extends FunSuite{
 
   }
   test("readUserToken"){
-    val result = Await.result(services.apply.getEntity(userToken.siteId), 2.minutes)
-    assert( result.get.message =="valid Token")
+    val result = Await.result(services.apply.getEntity(userToken.id), 2.minutes)
+    assert( result.get.id =="120")
 
   }
 
 
 
   test("UserTokenUpdate"){
-    val result = Await.result(services.apply.getEntity(userToken.siteId), 2.minutes)
-    val updateUserToken = result.get.copy(message= "not valid token")
+    val result = Await.result(services.apply.getEntity(userToken.id), 2.minutes)
+    val updateUserToken = result.get.copy(id="121")
     val savedResult = Await.result(services.apply.saveEntity(updateUserToken), 2.minutes)
-    val newRequest = Await.result(services.apply.getEntity(updateUserToken.siteId), 2.minutes)
-    assert( newRequest.get.message=="not valid token")
+    val newRequest = Await.result(services.apply.getEntity(updateUserToken.id), 2.minutes)
+    assert( newRequest.get.id=="121")
   }
 
   test("readAllUserToken"){
@@ -49,6 +49,8 @@ class UserTokenServicesTest extends FunSuite{
 
 
   }
+
+
 
 
 }
