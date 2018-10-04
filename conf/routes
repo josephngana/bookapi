@@ -12,7 +12,7 @@ GET        /assets/*file        controllers.Assets.versioned(path="/public", fil
 ->         /setup               controllers.setup.SetupRouter
 ->         /mail                controllers.mail.MailRouter
 ->         /roles               controllers.roles.RoleRouter
-->         /security            controllers.security.SecurityRouter
+#->         /security            controllers.security.SecurityRouter
 ->         /syslogs             controllers.systemlogs.LogsRouter
 ->         /users               controllers.users.UsersRouter
 
