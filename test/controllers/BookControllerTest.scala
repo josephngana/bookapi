@@ -31,7 +31,7 @@ class BookControllerTest extends PlaySpec with GuiceOneAppPerTest with Injecting
 
     "Read Entity" in {
 
-      val request = route(app, FakeRequest(GET, "/books/site/get/" + entity.siteId)
+      val request = route(app, FakeRequest(GET, "/books/site/getall/" + entity.siteId)
         .withHeaders(AUTHORIZATION -> token)
       ).get
       status(request) mustBe OK
@@ -43,7 +43,7 @@ class BookControllerTest extends PlaySpec with GuiceOneAppPerTest with Injecting
 
     "Read Entities" in {
 
-      val request = route(app, FakeRequest(GET, "/books/etall")
+      val request = route(app, FakeRequest(GET, "/books/getall")
         .withHeaders((AUTHORIZATION -> token))
       ).get
       status(request) mustBe OK
