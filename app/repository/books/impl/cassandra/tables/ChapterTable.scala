@@ -88,7 +88,7 @@ abstract class ChapterTable extends Table[ChapterTable, Chapter] with RootConnec
     * @param ids
     * @return
     */
-  def getEntities(ids: List[String]): Future[Seq[Chapter]] = {
+  def getEntitiesForIds(ids: List[String]): Future[Seq[Chapter]] = {
     select
       .where(_.id in ids).fetchEnumerator() run Iteratee.collect()
   }

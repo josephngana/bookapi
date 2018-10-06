@@ -26,7 +26,7 @@ class ChapterRepositoryImpl extends ChapterRepository {
 
   override def getEntity(id: String): Future[Option[Chapter]] = ChapterDatabase.ChapterTable.getEntity(id)
 
-  override def getEntities(ids: List[String]): Future[Seq[Chapter]] = ChapterDatabase.ChapterTable.getEntities(ids)
+  override def getEntitiesForIds(ids: List[String]): Future[Seq[Chapter]] = ChapterDatabase.ChapterTable.getEntitiesForIds(ids)
 
   override def deleteEntity(entity: Chapter): Future[Boolean] =
     ChapterDatabase.ChapterTable.deleteEntity(entity.id).map(result => result.isExhausted())

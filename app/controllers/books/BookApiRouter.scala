@@ -21,7 +21,7 @@ class BookApiRouter @Inject() (
 
       // For Chapters
     case GET(p"/chapters/getall") => chapterController.getEntities // for super admin
-    case GET(p"/site/chapters/getforids/$ids") => chapterController.getEntities(ids)
+    case GET(p"/site/chapters/getforids/$ids") => chapterController.getEntitiesForIds(ids)
     case GET(p"/site/chapter/get/$id") => chapterController.getEntity(id)
     case POST(p"/site/chapter/create") => chapterController.create
     case POST(p"/site/chapter/update") => chapterController.update
