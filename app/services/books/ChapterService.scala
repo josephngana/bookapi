@@ -14,7 +14,7 @@ import services.books.impl.ChapterServiceImpl
 import scala.concurrent.Future
 
 trait ChapterService extends CrudService[Chapter]{
-  def getEntities(ids: List[String]): Future[Seq[Chapter]]
+  def getEntitiesForIds(ids: List[String]): Future[Seq[Chapter]]
 }
 
 object ChapterService {
