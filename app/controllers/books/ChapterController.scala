@@ -23,7 +23,7 @@ class ChapterController @Inject()(cc: ControllerComponents) extends AbstractCont
         //        auth <- TokenCheckService.apply.getLoginStatus(request)
         results <- ChapterService.apply.saveEntity(entity)
       } yield results
-      response.map(ans => Ok(Json.toJson(ans)))
+      response.map(ans => Ok(Json.toJson(entity)))
         .recover {
           case tokenFailExcerption: TokenFailExcerption => Unauthorized
           case otherException: Exception => InternalServerError

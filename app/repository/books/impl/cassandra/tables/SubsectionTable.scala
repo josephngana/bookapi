@@ -79,4 +79,14 @@ abstract class SubsectionTable extends Table[SubsectionTable, Subsection] with R
       .where(_.id.eqs(id))
       .one()
   }
+
+  /**
+    * Fetch subsections given IDs
+    * @param ids
+    * @return
+    */
+  def getEntitiesForIds(ids: List[String]): Future[Seq[Subsection]] = {
+    select
+      .where(_.id in ids).fetchEnumerator() run Iteratee.collect()
+  }
 }
