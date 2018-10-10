@@ -1,76 +1,88 @@
 package controllers
 
-import domain.mail.MailApi
+
+import java.time.LocalDateTime
+
+import play.api.test.Helpers._
+import domain.systemlogs.SystemLogEvents
 import org.scalatestplus.play.PlaySpec
 import org.scalatestplus.play.guice.GuiceOneServerPerTest
 import play.api.libs.json.Json
-import play.api.test.Helpers._
 import play.api.test.{FakeRequest, Injecting}
 
-class MailControllerTest extends PlaySpec with GuiceOneServerPerTest with Injecting{
+class SystemLogsControllerTest extends PlaySpec with GuiceOneServerPerTest with Injecting {
 
-  val entity = MailApi("provider","key","sender")
-  val token = "mail"
+  val date:LocalDateTime=LocalDateTime.now()
+  val entity=SystemLogEvents("101","1","ButtonClick","action","click here",date)
+
+  val token="hi system"
+
+  " SystemLogsController" should {
 
 
-  "RoleController " should {
-
-    "Create Entity " in {
-      val request = route(app, FakeRequest(POST, "/mail/api/create")
+    "Create Entity" in {
+      val request = route(app, FakeRequest(POST, "/syslogs/create")
         .withJsonBody(Json.toJson(entity))
         .withHeaders(AUTHORIZATION -> token)
       ).get
       status(request) mustBe OK
       contentType(request) mustBe Some("application/json")
-      println(" The Content is: ", contentAsString(request))
+      println("The content is: ", contentAsString(request))
 
     }
 
-    "Read Entity " in {
-      val request = route(app, FakeRequest(GET, "/mail/api/get/" + entity.id)
+
+    "Read Entity" in {
+
+      val request = route(app, FakeRequest(GET, "/syslogs/get/" + entity.siteId)
         .withHeaders(AUTHORIZATION -> token)
       ).get
       status(request) mustBe OK
       contentType(request) mustBe Some("application/json")
-      println(" The Content is: ", contentAsString(request))
+      println(" The content is : ", contentAsString(request))
 
 
     }
 
     "Read Entities" in {
-      val request = route(app, FakeRequest(GET, "/mail/api/getall")
-        .withHeaders(AUTHORIZATION -> token)
+
+      val request = route(app, FakeRequest(GET, "/syslogs/getall")
+        .withHeaders((AUTHORIZATION -> token))
       ).get
       status(request) mustBe OK
       contentType(request) mustBe Some("application/json")
-      println(" The Content is: ", contentAsString(request))
-
-
+      println("the content is  : ", contentAsString(request))
     }
 
     "Update Entity" in {
-      val updatedEntity = entity.copy(key= "Updated")
-      val request = route(app, FakeRequest(POST, "/mail/api/update")
+      val updatedEntity = entity.copy(id = "little Book")
+      val request = route(app, FakeRequest(POST, "/syslogs/update")
         .withJsonBody(Json.toJson(updatedEntity))
         .withHeaders(AUTHORIZATION -> token)
       ).get
       status(request) mustBe OK
       contentType(request) mustBe Some("application/json")
-      println("The Content is: ", contentAsString(request))
+      println("The content is :", contentAsString(request))
+
+
     }
 
-    "Delete Entities " in {
-      val request = route(app, FakeRequest(POST, "/mail/api/Pdelete" )
+    "Delete Entities" in {
+
+      val request = route(app, FakeRequest(POST, "/syslogs/delete")
         .withJsonBody(Json.toJson(entity))
         .withHeaders(AUTHORIZATION -> token)
       ).get
       status(request) mustBe OK
       contentType(request) mustBe Some("application/json")
       println(" The Content is: ", contentAsString(request))
-
     }
   }
 
 
 
-}
+
+
+
+
+  }

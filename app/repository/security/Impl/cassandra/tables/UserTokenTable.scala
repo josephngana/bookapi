@@ -25,8 +25,8 @@ abstract class UserTokenTable extends Table[UserTokenTable, UserToken] with Root
 
   def saveEntity(entity: UserToken): Future[ResultSet] = {
     insert
-      .value(_.userId, entity.userId)
       .value(_.id, entity.id)
+      .value(_.userId, entity.userId)
       .value(_.expiryDate, entity.expiryDate)
       .value(_.tokenValue, entity.tokenValue)
       .value(_.message, entity.message)
@@ -82,8 +82,8 @@ abstract class UserTokenByIdTable extends Table[UserTokenByIdTable, UserToken] w
 
   def saveEntity(entity: UserToken): Future[ResultSet] = {
     insert
-      .value(_.userId, entity.userId)
       .value(_.id, entity.id)
+      .value(_.userId, entity.userId)
       .value(_.expiryDate, entity.expiryDate)
       .value(_.tokenValue, entity.tokenValue)
       .value(_.message, entity.message)

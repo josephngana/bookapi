@@ -26,7 +26,7 @@ class UserTokenRepositoryImpl extends UserTokenRepository{
   }
 
   override def deleteEntity(entity: UserToken): Future[Boolean] = {
-    UserTokenDatabase.userTokenTable.deleteEntity(entity.siteId,entity.id).map(result => result.isExhausted())
+    UserTokenDatabase.userTokenTable.deleteEntity(entity.userId,entity.id).map(result => result.isExhausted())
     UserTokenDatabase.userTokenByIdTable.deleteEntity(entity.id).map(result => result.isExhausted())
 
   }
