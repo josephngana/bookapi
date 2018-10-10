@@ -24,6 +24,9 @@ class SubsectionRepositoryImpl extends SubsectionRepository{
   override def getEntities: Future[Seq[Subsection]] =
     SubsectionDatabase.SubsectionTable.getEntities
 
+  override def getEntitiesForIds(ids: List[String]): Future[Seq[Subsection]] =
+    SubsectionDatabase.SubsectionTable.getEntitiesForIds(ids)
+
   override def getEntity(id: String): Future[Option[Subsection]] =
     SubsectionDatabase.SubsectionTable.getEntity(id)
 

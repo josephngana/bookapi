@@ -82,4 +82,14 @@ abstract class SectionTable extends Table[SectionTable, Section] with RootConnec
       .where(_.id.eqs(id))
       .one()
   }
+
+  /**
+    * Fetch sections given IDs
+    * @param ids
+    * @return
+    */
+  def getEntitiesForIds(ids: List[String]): Future[Seq[Section]] = {
+    select
+      .where(_.id in ids).fetchEnumerator() run Iteratee.collect()
+  }
 }

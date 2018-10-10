@@ -24,6 +24,9 @@ class SectionRepositoryImpl extends SectionRepository {
   override def getEntities: Future[Seq[Section]] =
     SectionDatabase.SectionTable.getEntities
 
+  override def getEntitiesForIds(ids: List[String]): Future[Seq[Section]] =
+    SectionDatabase.SectionTable.getEntitiesForIds(ids)
+
   override def getEntity(id: String): Future[Option[Section]] = SectionDatabase.SectionTable.getEntity(id)
 
   override def deleteEntity(entity: Section): Future[Boolean] =

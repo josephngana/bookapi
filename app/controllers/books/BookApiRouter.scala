@@ -7,7 +7,9 @@ import play.api.routing.sird._
 
 class BookApiRouter @Inject() (
                                 bookController: BookController,
-                                chapterController: ChapterController
+                                chapterController: ChapterController,
+                                sectionController: SectionController,
+                                subsectionController: SubsectionController
                               ) extends SimpleRouter {
   override def routes: Routes = {
 
@@ -26,6 +28,20 @@ class BookApiRouter @Inject() (
     case POST(p"/site/chapter/create") => chapterController.create
     case POST(p"/site/chapter/update") => chapterController.update
     case POST(p"/site/chapter/delete") => chapterController.delete
+
+      // For Sections
+    case GET(p"/site/sections/getforids/$ids") => sectionController.getEntitiesForIds(ids)
+    case GET(p"/site/section/get/$id") => sectionController.getEntity(id)
+    case POST(p"/site/section/create") => sectionController.create
+    case POST(p"/site/section/update") => sectionController.update
+    case POST(p"/site/section/delete") => sectionController.delete
+
+      // For Subsections
+    case GET(p"/site/subsections/getforids/$ids") => subsectionController.getEntitiesForIds(ids)
+    case GET(p"/site/subsection/get/$id") => subsectionController.getEntity(id)
+    case POST(p"/site/subsection/create") => subsectionController.create
+    case POST(p"/site/subsection/update") => subsectionController.update
+    case POST(p"/site/subsection/delete") => subsectionController.delete
   }
 
 
