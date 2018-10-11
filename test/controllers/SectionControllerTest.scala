@@ -1,7 +1,6 @@
 package controllers
 
-
-import domain.books.Chapter
+import domain.books.Section
 import org.scalatestplus.play.PlaySpec
 import org.scalatestplus.play.guice.GuiceOneAppPerTest
 import play.api.libs.json.Json
@@ -9,18 +8,16 @@ import play.api.test.{FakeRequest, Injecting}
 import play.api.test.Helpers._
 
 
+class SectionControllerTest extends PlaySpec with GuiceOneAppPerTest with Injecting {
 
-class ChapterControllerTest extends PlaySpec with GuiceOneAppPerTest with Injecting {
+  val entity=Section("19","how to do CPR",List("18","28","34"))
+  val token="this is a section"
 
-  val entity = Chapter("18","emergencies",List("1","2","3","4","5","6","7","8"))
-  val token="these are the chapters"
-
-
-  " ChapterController" should {
+  " SystemLogsController" should {
 
 
     "Create Entity" in {
-      val request = route(app, FakeRequest(POST, "/books/site/chapter/create")
+      val request = route(app, FakeRequest(POST, "/books/site/section/create")
         .withJsonBody(Json.toJson(entity))
         .withHeaders(AUTHORIZATION -> token)
       ).get
@@ -30,9 +27,10 @@ class ChapterControllerTest extends PlaySpec with GuiceOneAppPerTest with Inject
 
     }
 
+
     "Read Entity" in {
 
-      val request = route(app, FakeRequest(GET, "/books/site/chapter/get/" + entity.id)
+      val request = route(app, FakeRequest(GET, "/books/site/section/get/" + entity.id)
         .withHeaders(AUTHORIZATION -> token)
       ).get
       status(request) mustBe OK
@@ -44,8 +42,8 @@ class ChapterControllerTest extends PlaySpec with GuiceOneAppPerTest with Inject
 
     "Read Entities" in {
 
-      val request = route(app, FakeRequest(GET, "/books/site/chapters/getforids/")
-        .withHeaders(AUTHORIZATION -> token)
+      val request = route(app, FakeRequest(GET, "/books/site/sections/getforids/")
+        .withHeaders((AUTHORIZATION -> token))
       ).get
       status(request) mustBe OK
       contentType(request) mustBe Some("application/json")
@@ -53,8 +51,8 @@ class ChapterControllerTest extends PlaySpec with GuiceOneAppPerTest with Inject
     }
 
     "Update Entity" in {
-      val updatedEntity = entity.copy(title= "health")
-      val request = route(app, FakeRequest(POST, "/books/site/chapter/update")
+      val updatedEntity = entity.copy(title= "health assessment")
+      val request = route(app, FakeRequest(POST, "/books/site/section/update")
         .withJsonBody(Json.toJson(updatedEntity))
         .withHeaders(AUTHORIZATION -> token)
       ).get
@@ -67,7 +65,7 @@ class ChapterControllerTest extends PlaySpec with GuiceOneAppPerTest with Inject
 
     "Delete Entities" in {
 
-      val request = route(app, FakeRequest(POST, "/books/site/chapter/delete")
+      val request = route(app, FakeRequest(POST, "/books/site/section/delete")
         .withJsonBody(Json.toJson(entity))
         .withHeaders(AUTHORIZATION -> token)
       ).get
@@ -76,6 +74,15 @@ class ChapterControllerTest extends PlaySpec with GuiceOneAppPerTest with Inject
       println(" The Content is: ", contentAsString(request))
     }
   }
+
+
+
+
+
+
+
+
+
 
 
 

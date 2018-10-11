@@ -13,7 +13,8 @@ import scala.concurrent.ExecutionContext.Implicits.global
   * @author caniksea
   * @param cc
   */
-class ChapterController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+class ChapterController @Inject()
+(cc: ControllerComponents) extends AbstractController(cc) {
 
   def create: Action[JsValue] = Action.async(parse.json) {
     request =>
