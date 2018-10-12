@@ -27,15 +27,15 @@ class UserTokenRepositoryTest extends FunSuite{
   test("readUserToken"){
     val result = Await.result(repository.apply.getEntity(userToken.userId), 2.minutes)
 
-    assert( result.get.tokenValue=="123token")
+    assert( result.get.siteId=="100")
   }
 
   test("UserTokenUpdate"){
     val result = Await.result(repository.apply.getEntity(userToken.userId), 2.minutes)
-    val updateUserToken = result.get.copy(tokenValue= "1234token")
+    val updateUserToken = result.get.copy(siteId= "1234")
     val savedResult = Await.result(repository.apply.saveEntity(updateUserToken), 2.minutes)
     val newRequest = Await.result(repository.apply.getEntity(updateUserToken.userId), 2.minutes)
-    assert( newRequest.get.tokenValue=="1234token")
+    assert( newRequest.get.siteId=="1234")
   }
 
   test("readAllUserToken"){
