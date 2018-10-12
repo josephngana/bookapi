@@ -1,4 +1,6 @@
 package repository
+import java.time.LocalDateTime
+
 import domain.books.Chapter
 import org.scalatest.FunSuite
 import repository.books.ChapterRepository
@@ -8,7 +10,8 @@ import scala.concurrent.duration._
 
 class ChapterRepositoryTest  extends FunSuite{
 
-  val chapter=Chapter("18","emergencies",List("1","2","3","4","5","6","7","8"))
+  val dateCreated:LocalDateTime=LocalDateTime.now
+  val chapter = Chapter("18","21","emergencies",None,None,dateCreated)
   val repository= ChapterRepository
 
 
@@ -18,18 +21,18 @@ class ChapterRepositoryTest  extends FunSuite{
     assert(result)
   }
   test("readChapter"){
-    val result = Await.result(repository.apply.getEntity(chapter.id), 2.minutes)
+    val result = Await.result(repository.apply.getEntity(chapter.bookId), 2.minutes)
 
-    assert( result.get.title=="emergencies")
+    assert( result.get.chapterTitle=="emergencies")
 
   }
 
   test("ChapterUpdate"){
-    val result = Await.result(repository.apply.getEntity(chapter.id), 2.minutes)
-    val updateChapter= result.get.copy(title = "Health")
+    val result = Await.result(repository.apply.getEntity(chapter.bookId), 2.minutes)
+    val updateChapter= result.get.copy(chapterTitle = "Health")
     val savedResult = Await.result(repository.apply.saveEntity(updateChapter), 2.minutes)
-    val newRequest = Await.result(repository.apply.getEntity(updateChapter.id), 2.minutes)
-    assert( newRequest.get.title=="Health")
+    val newRequest = Await.result(repository.apply.getEntity(updateChapter.bookId), 2.minutes)
+    assert( newRequest.get.chapterTitle=="Health")
   }
 
   test("readAllChapter"){

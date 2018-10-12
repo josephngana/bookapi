@@ -10,9 +10,10 @@ import scala.concurrent.duration._
 import scala.concurrent.Await
 
 class BookRepositoryTest extends FunSuite{
+  val dateCreated:LocalDateTime=LocalDateTime.now
   val datePublished:LocalDateTime=LocalDateTime.now()
 
-  val book=Book("11","0101","little black book","978-1-928333-02-9","978-1-928333-03-6","womens's unit","Motsepe Foundation",datePublished,List("1","2","3","4","5"))
+  val book=Book("11","0101","little black book",None,None,None,None,"womens'unit","Motsepe Foundations",datePublished,dateCreated)
   val repository=BookRepository
 
   test("createBook"){
@@ -20,18 +21,18 @@ class BookRepositoryTest extends FunSuite{
     assert(result)
   }
   test("readBook"){
-    val result = Await.result(repository.apply.getEntity(book.id), 2.minutes)
+    val result = Await.result(repository.apply.getEntity(book.bookId), 2.minutes)
 
-    assert( result.get.title=="little black book")
+    assert( result.get.bookTitle=="little black book")
 
   }
 
   test("BookUpdate"){
-    val result = Await.result(repository.apply.getEntity(book.id), 2.minutes)
-    val updatedBook = result.get.copy(title = "little Book")
+    val result = Await.result(repository.apply.getEntity(book.bookId), 2.minutes)
+    val updatedBook = result.get.copy(bookTitle = "little Book")
     val savedResult = Await.result(repository.apply.saveEntity(updatedBook), 2.minutes)
-    val newRequest = Await.result(repository.apply.getEntity(updatedBook.id), 2.minutes)
-    assert( newRequest.get.title=="little Book")
+    val newRequest = Await.result(repository.apply.getEntity(updatedBook.bookId), 2.minutes)
+    assert( newRequest.get.bookTitle=="little Book")
   }
 
   test("readAllBook"){

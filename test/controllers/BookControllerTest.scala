@@ -10,8 +10,10 @@ import play.api.test.Helpers._
 import play.api.test.{FakeRequest, Injecting}
 
 class BookControllerTest extends PlaySpec with GuiceOneAppPerTest with Injecting{
+  val dateCreated:LocalDateTime=LocalDateTime.now
+
   val datePublished:LocalDateTime=LocalDateTime.now()
-  val entity= Book("11","0101","little black book","978-1-928333-02-9","978-1-928333-03-6","womens's unit","Motsepe Foundation",datePublished,List("1","2","3","4","5"))
+  val entity= Book("11","0101","little black book",None,None,None,None,"womens'unit","Motsepe Foundations",datePublished,dateCreated)
   val token="hi there"
 
   " BookController" should {
@@ -31,7 +33,7 @@ class BookControllerTest extends PlaySpec with GuiceOneAppPerTest with Injecting
 
     "Read Entity" in {
 
-      val request = route(app, FakeRequest(GET, "/books/site/getall/" + entity.siteId)
+      val request = route(app, FakeRequest(GET, "/books/site/getall/" + entity.bookId)
         .withHeaders(AUTHORIZATION -> token)
       ).get
       status(request) mustBe OK
@@ -52,7 +54,7 @@ class BookControllerTest extends PlaySpec with GuiceOneAppPerTest with Injecting
     }
 
     "Update Entity" in {
-      val updatedEntity = entity.copy(title = "little Book")
+      val updatedEntity = entity.copy(bookTitle = "little Book")
       val request = route(app, FakeRequest(POST, "/books/site/book/update")
         .withJsonBody(Json.toJson(updatedEntity))
         .withHeaders(AUTHORIZATION -> token)
