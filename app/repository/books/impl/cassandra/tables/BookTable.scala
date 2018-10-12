@@ -109,6 +109,17 @@ abstract class BookTable extends Table[BookTable, Book] with RootConnector  {
       .future()
   }
 
+  /**
+    *
+    * @param siteId
+    * @return
+    */
+  def getBookCountForSite(siteId: String): Future[Option[Long]] = {
+    select
+      .count().where(_.siteId eqs siteId)
+      .one()
+  }
+
 
 }
 
