@@ -20,11 +20,11 @@ class DashboardController @Inject()
       } yield result
 
       siteResponse.map(sites => {
-        val siteBooks = for {
-          site <- sites
-          bookCount <- BookService.apply.getBookCountForSite(site.siteId)
-        } yield SiteBook(site.siteName, bookCount)
-        Ok(Json.toJson(siteBooks))
+//        val siteBooks: Seq[SiteBook] = for {
+//          site <- sites
+//          bookCount <- BookService.apply.getBookCountForSite(site.siteId)
+//        } yield SiteBook(site.siteName, bookCount)
+        Ok(Json.toJson(sites))
       })
   }
 
