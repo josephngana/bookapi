@@ -33,6 +33,8 @@ class BookRepositoryImpl extends BookRepository {
 
   override def getEntity(id: String): Future[Option[Book]] = BookDatabase.BookByIdTable.getEntity(id)
 
+  override def getBookCountForSite(siteId: String): Future[Option[Long]] = BookDatabase.BookTable.getBookCountForSite(siteId)
+
   override def deleteEntity(entity: Book): Future[Boolean] = {
     BookDatabase.BookTable.deleteEntity(entity.siteId, entity.bookId).map(result => result.isExhausted())
     BookDatabase.BookByIdTable.deleteEntity(entity.bookId).map(result => result.isExhausted())
